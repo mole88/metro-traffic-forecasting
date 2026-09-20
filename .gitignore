@@ -1,0 +1,7 @@
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+artifacts/
+*.csv.gz
+Metro_Interstate_Traffic_Volume.csv
+.DS_Store
