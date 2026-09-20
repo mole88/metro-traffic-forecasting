@@ -42,42 +42,4 @@ The original exploratory comparison also inspected test metrics and ranked confi
 
 [Detailed results and audit](RESULTS.md) · [Historical metrics CSV](historical_metrics.csv)
 
-## Run
-
-Python 3.10+ is recommended. GPU is optional; it is useful for the full searches.
-
-```bash
-python -m venv .venv
-# Linux/macOS:
-source .venv/bin/activate
-# Windows PowerShell instead: .venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-jupyter lab
-```
-
-1. Download **Metro Interstate Traffic Volume** from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume), decompress the CSV, and keep it outside version control.
-2. Open `traffic_forecasting.ipynb`.
-3. Set `DATA_PATH` to the CSV's actual location. In Colab, upload the CSV through the Files sidebar and use its `/content/...` path.
-4. Run all cells. By default, one LSTM configuration is trained for up to 20 epochs with patience 5.
-5. Enable `RUN_OPTIMIZER_SWEEP` and/or `RUN_GRID_SEARCH` for the full experiments. Do not select a configuration based on test results.
-
-Outputs are saved in `artifacts/`: preprocessing objects, model checkpoint, validation results, test metrics, predictions and a forecast plot. Use the same saved preprocessing for inference. Dependency ranges are compatibility bounds, not the exact environment of the historical run; random seeds help reproducibility but do not guarantee identical CPU/GPU results.
-
-## Repository structure
-
-| Path | Contents |
-|---|---|
-| `traffic_forecasting.ipynb` | Revised runnable notebook; outputs cleared |
-| `historical_experiment.ipynb` | Source experiment snapshot with recorded outputs |
-| `RESULTS.md` | Metric provenance, corrections and remaining limitations |
-| `historical_*_forecast.png` | Original plots extracted from saved notebook outputs |
-| `historical_metrics.csv` | Machine-readable historical metrics |
-| `requirements.txt` | Runtime dependencies |
-
-## Authors and provenance
-
-The original experiment was completed jointly by **Sergey Kokorev, Nikita Kuznetsov and Georgy Uspensky**. This portfolio edition organizes that work as a standalone project and documents subsequent evaluation fixes. Individual contributions are not inferred from the shared report.
-
 [Source Colab notebook](https://colab.research.google.com/drive/1mfHgVe3PZF1DpCGAG04IzswHB737mTv8?usp=sharing).
-
-Dataset and its license remain with the original provider. This repository does not redistribute the dataset or trained weights. No new code license is asserted on behalf of all contributors.
